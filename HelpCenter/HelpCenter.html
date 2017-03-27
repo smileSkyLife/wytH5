@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>帮助中心</title>
+    <style>
+        body{
+            margin:0 0;
+            padding:0 0;
+            background-color: #13161A;
+        }
+        .tabBar{
+            height: 48px;
+            width: 100%;
+            -webkit-display:flex;
+            display:flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+        .tabBar>a:nth-child(1){
+            margin-left: 14px;
+        }
+        .tabBar>a:nth-child(4){
+            margin-right: 14px;
+        }
+        .tabBar>a{
+            margin-right: 14px;
+            -webkit-flex: 1;
+            flex:1;
+            -webkit-display:flex;
+            display:flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+            align-items: center;
+            -webkit-align-items: center;
+            color:#A0A1A3;
+            font-size: 14px;
+            font-family: "PingFang SC";
+
+
+        }
+        .tabBar>a>span{
+            height:46px;
+            -webkit-display:flex;
+            display:flex;
+            align-items: center;
+            -webkit-align-items: center;
+            letter-spacing:0.12em;
+            margin-bottom: 2px;
+            transition: color 0.3s;
+            -webkit-transition: color 0.3s;
+            -moz-transition: color 0.3s;
+        }
+        a.active>span{
+            border-bottom: 2px solid #0064BB;
+            color:#FFFFFF;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing:0.13em;
+        }
+        img{
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+        }
+        .content{
+            width:100%;
+            background-color: #1C1F22;
+            -webkit-display:flex;
+            display:flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+
+        }
+        .content>a{
+            height:48px;
+            width:100%;
+            color:#fff;
+            -webkit-flex: 1;
+            flex:1;
+            -webkit-display:flex;
+            display:flex;
+            justify-content: flex-start;
+            -webkit-justify-content: flex-start;
+            align-items: center;
+            -webkit-align-items: center;
+            margin-left: 10px;
+            font-family: "PingFang SC";
+            font-size: 15px;
+            font-weight: 300;
+        }
+        .content>p{
+            flex:1;
+            overflow: hidden;
+            display: none;
+            -webkit-display: none;
+            padding: 0 0;
+            margin:0 0;
+            line-height: 21px;
+            color:#A0A1A3;
+            font-size:15px;
+            text-align: left;
+            font-family: "PingFang SC";
+            margin-left: 12px;
+            padding-right: 20px;
+            margin-top: 6px;
+            margin-bottom: 25px;
+        }
+        .content>div{
+            -webkit-flex: 1;
+            flex:1;
+            margin-left: 10px;
+            border: 1px solid #1E2931;
+        }
+        .content>a>span{
+            margin-left: 6px;
+            margin-right: 10px;
+
+        }
+        @media only screen
+        and (min-device-width: 320px){
+            .tabBar>a:nth-child(1){
+                margin-left: 3px;
+            }
+            .tabBar>a:nth-child(4){
+                margin-right: 2px;
+            }
+        }
+    </style>
+</head>
+<body class="container">
+ <div class="tabBar">
+     <a id="account" class="active"><span>账号问题</span></a>
+     <a id="integral"><span>积分问题</span></a>
+     <a id="card"><span>卡券问题</span></a>
+     <a id="term"><span>相关名词</span></a>
+ </div>
+ <div class="content">
+ </div>
+ <script src="./js/jquery.min.js"></script>
+ <script src="./js/data.js"></script>
+ <script src="./js/HelpCenter.js"></script>
+ <script>
+     //tabnar切换事件绑定
+     $('.tabBar>a').on('click', function(){
+         if($(this).get(0) == $('.tabBar>.active').get(0)){
+             return;
+         }
+         $('.tabBar>.active').removeClass('active');
+         $(this).addClass('active');
+         switch (this.id){
+             case 'account':
+                 toggleContent(account);
+                 break;
+             case 'integral':
+                 toggleContent(integral);
+                 break;
+             case 'card':
+                 toggleContent(card);
+                 break;
+             case 'term':
+                 toggleContent(term);
+                 break;
+         }
+     });
+     toggleContent(account);
+ </script>
+</body>
+</html>
