@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>热门交易</title>
+    <meta charset="utf-8">
+    <link href="res/css/helpCenterDetail.css" rel="stylesheet">
+    <script src="res/js/jquery.min.js"></script>
+    <script src="res/js/jszip.min.js"></script>
+    <script src="res/js/kendo.core.min.js"></script>
+    <script src="res/js/kendo.drawing.min.js"></script>
+    <script src='res/js/kendo.dataviz.core.min.js'></script>
+    <script src='res/js/kendo.data.min.js'></script>
+    <script src='res/js/kendo.dataviz.chart.min.js'></script>
+    <script src='res/js/kendo.dataviz.themes.min.js'></script>
+
+    <script>
+        function createChart() {
+            $("#chart").kendoChart({
+                legend: {
+                    visible: false
+                },
+                seriesDefaults: {
+                    type: "area",
+                    area: {
+                        line: {
+                            style: "smooth",
+                            width:1
+                        }
+                    }
+                },
+                series: [{
+                    name: "积分",
+                    data: [100, 210.5,580.21, 720.1, 1230],
+                    color:'#FFB315',
+                    markers: {
+                        visible: true,
+                        background: "#FFB315",
+                        size: 2
+                    },
+                    labels: {
+                        visible: true,
+                        background:"transparent",
+                        template: "#: value #w",
+                        position:"center",
+                        color:"#fff"
+                    },
+                    missingValues:"gap"
+
+                },
+                    {
+                    name: "卡券",
+                    data: [100, 130, 180, 200, 480],
+                    color:'#2AB954',
+                    markers: {
+                        visible: true,
+                        background: "#2AB954",
+                        size: 2
+                    },
+                    labels: {
+                        format: "{0}w",
+                        visible: true,
+                        background:"transparent",
+                        template: "#: value==100?'':value+'w' #",
+                        position:"bottom",
+                        color:"#fff"
+                    },
+                },
+                ],
+                valueAxis: {
+                    labels: {
+                        format: "{0}w",
+                        visible:false
+                    },
+                    line: {
+                        visible: false,
+                    },
+                    majorGridLines: {
+                        //visible: false
+                        type:"line",
+                        dashType:"longDash",
+                        color:"#263542"
+                    }
+                    //axisCrossingValue: -10,
+
+                },
+                categoryAxis: {
+                    categories: [7, 8, 9, 10, 11],
+                    majorGridLines: {
+                        //visible: false
+                        type:"line",
+                        dashType:"longDash",
+                        color:"#263542"
+                    },
+                    labels: {
+                        rotation: "auto",
+                        format:"{0}月",
+                        margin:5,
+                        color:"#A0A1A3"
+
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    format: "{0}%",
+                    template: "#= series.name #: #= value#"
+                },
+                panes: [
+                    { name: "top-pane" ,background: "#1C1F22",padding:5,margin:-5 },
+                ]
+            });
+
+
+            $("#donutChart").kendoChart({
+                seriesDefaults: {
+                    labels: {
+                        template: "#= category # \n #= kendo.format('{0:P}', percentage)#",
+                        position: "outsideEnd",
+                        visible: true,
+                        background: "transparent",
+                        color:"#fff"
+                    }
+                },
+                legend: {
+                    visible: false
+                },
+                series: [{
+                    type: "donut",
+                    data: [{
+                        category: "鲸鱼积分",
+                        color:"#FFB315",
+                        value: 24
+                    }, {
+                        category: "葵花银行积分",
+                        color:"#2AB954",
+                        value: 20
+                    }, {
+                        category: "雅迪酒店积分",
+                        color:"#009BFF",
+                        value: 19
+                    }, {
+                        category: "其他积分",
+                        value: 37,
+                        color:"#FF4469"
+                    }],
+                    label:{
+
+                    },
+                    overlay: {
+                        gradient: "none"
+                    },
+                    size:35
+                }],
+                panes: [
+                    { name: "top-pane" ,background: "#1C1F22",padding:3 },
+                ],
+                chartArea: {
+                    background: "#1C1F22"
+                },
+                legend: {
+                    position: "bottom",
+                    labels:{
+                        color:"#fff",
+                        padding:{
+                            top:20
+                        }
+                    }
+
+                }
+            });
+
+        }
+
+        $(document).ready(createChart);
+        $(document).bind("kendo:skinChange", createChart);
+    </script>
+    <style>
+        .item{
+            padding:11px 11px 11px 11px;
+            align-items: center;
+            border-bottom-width: 1px;
+            border-bottom-color:#1F2931 ;
+            border-bottom-style: solid;
+            margin-left: 11px;
+        }
+        .title{
+            border-bottom-width: 1px;
+            border-bottom-color:#1F2931 ;
+            border-bottom-style: solid;
+        }
+    </style>
+</head>
+<body>
+<div style="padding:12px;background-color:#1C1F22;margin-top: 10px" class="column">
+    <div class="block" style="font-size:13px;color:#A0A1A3;margin-bottom: 10px">历史交易情况</div>
+    <div class="block">
+        <div id="chart" style="width: 100%;height:260px;background:transparent"></div>
+    </div>
+    <div class="block row">
+        <div class="block">
+            <div style="width:12px;height: 12px;border-radius: 2px;background-color:#FFB315 " >
+
+            </div>
+            <div> <label style="font-size:13px;color: #fff">&nbsp;积分交易额 (代币)</label></div>
+        </div>
+        <div class="block">
+            <div style="width:12px;height: 12px;border-radius: 2px;background-color:#2AB954 " >
+
+            </div>
+            <div> <label style="font-size:13px;color: #fff">&nbsp;卡券交易额 (代币)</label></div>
+        </div>
+    </div>
+</div>
+<div style="background-color:#1C1F22;margin-top: 10px" class="column">
+    <div class="block " style="padding:12px;font-size:13px;color:#A0A1A3;margin-bottom: 0px">本月交易量分析</div>
+    <div class="block" style="justify-content: center;align-items: center">
+        <div id="donutChart" style="width:100%;height:280px;background:transparent"></div>
+    </div>
+</div>
+
+<div style="background-color:#1C1F22;margin-top: 10px" class="column">
+    <div class="block title" style="padding:12px;font-size:13px;color:#A0A1A3;border-bottom-width: 1px;border-bottom-color: #1F2931;">本月卡券交易量分析</div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo11.png" style="width:28px;height:28px;">
+        </div>
+        <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">洲季酒店100元优惠券</div>
+        <div style="justify-content: flex-end" class="block">
+            <div class="column " style="align-items: center">
+                <div style="font-size:24px;color: #fff">28%</div>
+                <div style="font-size:11px;color: #717375">销售总额占比</div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo12.png" style="width:28px;height:28px;">
+        </div>
+        <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">海豚旅行100元优惠券</div>
+        <div style="justify-content: flex-end" class="block">
+            <div class="column " style="align-items: center">
+                <div style="font-size:24px;color: #fff">18%</div>
+                <div style="font-size:11px;color: #717375">销售总额占比</div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo13.png" style="width:28px;height:28px;">
+        </div>
+        <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">恺悦酒店100元优惠券</div>
+        <div style="justify-content: flex-end" class="block">
+            <div class="column " style="align-items: center">
+                <div style="font-size:24px;color: #fff">17%</div>
+                <div style="font-size:11px;color: #717375">销售总额占比</div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo14.png" style="width:28px;height:28px;">
+        </div>
+        <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">中国电芯10元优惠券</div>
+        <div style="justify-content: flex-end" class="block">
+            <div class="column " style="align-items: center">
+                <div style="font-size:24px;color: #fff">12%</div>
+                <div style="font-size:11px;color: #717375">销售总额占比</div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo_qita.png" style="width:28px;height:28px;">
+        </div>
+        <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">其他</div>
+        <div style="justify-content: flex-end" class="block">
+            <div class="column " style="align-items: center">
+                <div style="font-size:24px;color: #fff">25%</div>
+                <div style="font-size:11px;color: #717375">销售总额占比</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

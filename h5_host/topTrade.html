@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>交易榜单</title>
+    <meta charset="utf-8">
+
+    <link href="res/css/kendo.common.min.css" rel="stylesheet">
+    <link href="res/css/kendo.rtl.min.css" rel="stylesheet">
+    <link href="res/css/kendo.default.min.css" rel="stylesheet">
+    <link href="res/css/kendo.default.mobile.min.css" rel="stylesheet">
+    <link href="res/css/helpCenterDetail.css" rel="stylesheet">
+    <script src="res/js/jquery.min.js"></script>
+    <script src="res/js/jszip.min.js"></script>
+    <script src="res/js/kendo.core.min.js"></script>
+    <script src="res/js/kendo.progressbar.min.js"></script>
+    <!--<script src="res/js/kendo.all.min.js"></script>-->
+
+
+    <script>
+        var process = []
+        var process1 = []
+        var tab = "tab1"
+        $(document).ready(function(){
+
+            for(var i=0; i<10;i++)
+            {
+                var p1 = $("#process_"+i).kendoProgressBar({
+                    type: "percent",
+                    animation: {
+                        duration: 500
+                    },
+                    reverse: true,
+                    showStatus: false,
+                    change: onChange
+                }).data("kendoProgressBar");
+                process.push(p1)
+
+                p1.progressWrapper.css({
+                    "background-color": "#FFB315 ",
+                    "border-color": "#FFB315 ",
+                    "border-radius": "0px"
+                });
+
+                p1.value(0);
+
+                p1.value($("#process_"+i).attr("pv"));
+
+                $("#process_"+i).css({
+                    "background-color":"#4D3A13",
+                    "border-color":"#4D3A13",
+                    "background-image":"none"
+                })
+
+            }
+
+
+            for(var i=0; i<10;i++)
+            {
+                var p1 = $("#process1_"+i).kendoProgressBar({
+                    type: "percent",
+                    animation: {
+                        duration: 500
+                    },
+                    reverse: true,
+                    showStatus: false,
+                    change: onChange
+                }).data("kendoProgressBar");
+
+                p1.progressWrapper.css({
+                    "background-color": "#2AB954 ",
+                    "border-color": "#2AB954 ",
+                    "border-radius":"0px"
+                });
+
+                p1.value(0);
+                p1.value($("#process1_"+i).attr("pv"));
+                process1.push(p1)
+
+                $("#process1_"+i).css({
+                    "background-color":"#11411F",
+                    "border-color":"#11411F",
+                    "background-image":"none"
+                })
+            }
+
+
+            $("#tab1").css({"display" : "block"})
+            $("#tab2").css({"display" : "none"})
+            $("#tabBtn1").addClass("tabSel")
+
+        });
+        function getProcess(type,e){
+            tab = type;
+            if(tab =="tab1")
+            {
+                $("#tabBtn1").addClass("tabSel")
+                $("#tabBtn2").removeClass("tabSel")
+                $("#tab1").css({"display" : "block"})
+                $("#tab2").css({"display" : "none"})
+
+                process.map(function(p,i){
+                    p.progressWrapper.css({
+                        "background-color": "#FFB315 ",
+                        "border-color": "#FFB315 ",
+                        "border-radius": "0px"
+                    });
+                })
+                process.map(function(p,i){
+                    p.value(0);
+                })
+                process.map(function(p,i){
+                    p.value($("#process_"+i).attr("pv"));
+                })
+//                process1.map(function(p){
+//                    p.value(0);
+//                })
+
+            }
+            else{
+                $("#tab1").css({"display" : "none"})
+                $("#tab2").css({"display" : "block"})
+                $("#tabBtn1").removeClass("tabSel")
+                $("#tabBtn2").addClass("tabSel")
+
+                process1.map(function(p,i){
+                    p.progressWrapper.css({
+                        "background-color": "#2AB954 ",
+                        "border-color": "#2AB954 ",
+                        "border-radius":"0px"
+                    });
+
+                })
+                process1.map(function(p,i){
+                    p.value(0);
+                })
+
+
+                process1.map(function(p,i){
+                    p.value($("#process1_"+i).attr("pv"));
+                })
+
+//                process.map(function(p){
+//                    p.value(0);
+//                })
+            }
+
+
+        }
+
+        function onChange(){
+//            if(tab == "tab1")
+//            {
+//                this.progressWrapper.css({
+//                    "background-color": "#FFB315 ",
+//                    "border-color": "#FFB315 ",
+//                    "border-radius": "0px"
+//                });
+//            }
+//            if(tab == "tab2")
+//            {
+//                this.progressWrapper.css({
+//                    "background-color": "#2AB954 ",
+//                    "border-color": "#2AB954 ",
+//                    "border-radius":"0px"
+//                });
+//            }
+        }
+
+
+    </script>
+    <style>
+        .tabSel{
+            font-size:15px !important;
+            color: #fff !important;
+            height: 42px !important;
+        }
+        .tab{
+            justify-content: center;align-items: center;font-size:14px;color: #A0A1A3;height: 42px;
+        }
+        .item{
+            padding:11px;
+            border-bottom-width: 1px;
+            border-bottom-color: #1F2931;
+            border-bottom-style: solid;
+        }
+
+
+    </style>
+
+
+</head>
+<body id="main" >
+
+<div class="block row">
+   <div id="tabBtn1" class="tab block" onclick="getProcess('tab1',this)">积分交易TOP10</div>
+    <div id="tabBtn2"  class="tab block" onclick="getProcess('tab2',this)">卡券交易TOP10</div>
+</div>
+<div id="tab1" style="padding:12px;background-color:#1C1F22;"class="column">
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo1.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">鲸鱼积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">24%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_0" pv="24" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo2.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">葵花银行积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">20%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_1" pv="20" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo3.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">雅迪酒店积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">19%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_2" pv="19" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo4.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">香格礼来酒店积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">10%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_3" pv="10" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo5.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">维斯厅酒店积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">9%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_4" pv="9" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo6.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">亿豪酒店积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">6%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_5" pv="6" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo7.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">叮当积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">5%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_6" pv="5" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo8.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">尼罗河积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">4%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_7" pv="4" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo9.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">白菜航空积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">2%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_8" pv="2" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo10.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">飞燕航空积分</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">1%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process_9" pv="1" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="tab2" style="padding:12px;background-color:#1C1F22;"class="column">
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo11.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">洲季100元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">28%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_0" pv="28" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo12.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">海豚旅行100元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">18%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_1" pv="18" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo13.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">喜登来酒店100元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">17%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_2" pv="17" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo14.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">中国电芯10元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">12%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_3" pv="12" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo15.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">中国链通10元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">7%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_4" pv="7" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo16.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">万到酒店50元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">5%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_5" pv="5" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo17.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">牛头旅行100元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">4%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_6" pv="4" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo18.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">喵喵商城20元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">4%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_7" pv="4" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo19.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">汪汪商城20元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">3%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_8" pv="3" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="item row">
+        <div>
+            <img src="res/img/trade/logo20.png" style="width:28px;height:28px;">
+        </div>
+        <div class="block column">
+            <div class="block row">
+                <div style="margin-left:10px;align-items: center;font-size: 15px;color: #fff">中国翼动10元优惠券</div>
+                <div class="block" style="justify-content: flex-end">
+                    <div style="font-size:24px;color: #fff;">2%</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div id ="process1_9" pv="2" style="width: 100%;height:8px;margin-top: 10px ;margin-left: 15px;border-radius: 0px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

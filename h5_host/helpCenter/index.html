@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>帮助中心</title>
+    <style>
+        @font-face {font-family: 'iconfont';
+            src: url('../res/fonts/iconfont.eot'); /* IE9*/
+            src: url('../res/fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('../res/fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+            url('../res/fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('../res/fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont{
+            font-family:"iconfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        div{
+            display:-webkit-flex;
+            display: flex;
+        }
+        body{
+            background-color:#13161A;
+            margin:0
+        }
+        .pannel{
+            background-color: #1C1F22;
+            margin-top: 10px;
+            padding:0px 0px 0px 12px;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex:1;
+            flex:1
+        }
+        .listItem{
+            padding:14px 0px 13px 0px;
+            border-style:solid;
+            border-top-width:0px;
+            border-left-width:0px;
+            border-right-width:0px;
+            border-bottom-width: 1px ;
+            border-bottom-color:#1F2931 ;
+            -webkit-flex:1;
+            flex:1;
+        }
+        .listItemLast{
+            padding:14px 0px 13px 0px;
+            -webkit-flex:1;
+            flex:1;
+        }
+        .title{
+            color:#FFFFFF;
+            font-size: 15px;
+            font-family: "PingFang SC";
+            font-weight: lighter;
+        }
+        .nextIcon{
+            font-size: 14px;
+            color:#FFFFFF;
+            padding-right: 9px;
+        }
+        .leftBlock{
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-flex:9;
+            flex:9;
+        }
+        .rightBlock{
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-flex:1;
+            flex:1;
+        }
+    </style>
+    <script type="text/javascript" src="../res/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+
+        $().ready(function(){
+
+            $(".listItem").on("click",goDetail);
+            $(".listItemLast").on("click",goDetail);
+
+            function goDetail(){
+                var key  = $(this).attr("key")
+                var title= $(this).children(".title").html()
+                location.href = key+".html?title="+title+"&date="+(new Date()).getTime();
+            }
+
+
+        });
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div class="pannel">
+        <div class="listItem" key='00_usingProcess'>
+            <div class="title leftBlock">使用流程</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key='01_whyLoginFail'>
+            <div class="title leftBlock">为什么会登录失败?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="02_howToFoundPwd">
+            <div class="title leftBlock">如何找回密码?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="03_verfFail">
+            <div class="title leftBlock">获取短信验证码失败怎么办?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem"  key="04_whatIsCurrency">
+            <div class="title leftBlock">什么是代币？如何获得?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="05_howToBindMerchantsAccount">
+            <div class="title leftBlock">如何绑定商家会员账号?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="06_howToBuyIntegral">
+            <div class="title leftBlock">如何发布买单交易</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="11_howToSellIntegral">
+            <div class="title leftBlock">如何发布卖单交易</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key="07_tradePwd">
+            <div class="title leftBlock">交易密码设置?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <div class="listItem" key ="08_forgotTradePwd">
+            <div class="title leftBlock">忘记交易密码怎么办?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+        <!--<div class="listItem" key= "09_whatIsDelegate">-->
+            <!--<div class="title leftBlock">什么是限价委托?</div>-->
+            <!--<div class="iconfont rightBlock nextIcon">&#xe604;</div>-->
+        <!--</div>-->
+        <div class="listItemLast" key="10_tradeRule">
+            <div class="title leftBlock">发布买单/卖单多久后成交？成交规则如何?</div>
+            <div class="iconfont rightBlock nextIcon">&#xe604;</div>
+        </div>
+
+
+    </div>
+</body>
+</html>

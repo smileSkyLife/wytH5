@@ -1,0 +1,244 @@
+body{
+    margin: 0 0;
+    padding: 0 0;
+    min-width: 1200px;
+    height: 100%;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    overflow: hidden;
+}
+.navbar>a:nth-child(4){
+    color:#7b7f84;
+}
+p{
+    margin: 0 0;
+    padding: 0 0;
+}
+.section{
+    height: 100%;
+    flex: 1;
+    -webkit-flex: 1;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-display: flex;
+    background-image: url("../imgs/section1_bg.png");
+    background-size:100% 100%;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+}
+.section>p{
+    margin-top: 24px;
+    width: 485px;
+    font-family:PingFangSC-Regular, "Microsoft YaHei";;
+    font-size:14px;
+    color:rgba(255,255,255,0.40);
+    letter-spacing:2px;
+    text-align:center;
+}
+.section>img{
+    width: 120px;
+    height: 120px;
+    margin-top: 148px;
+}
+.title{
+    webkit-display: flex;
+    display: flex;
+    display: -ms-flexbox;
+    margin-top: 40px;
+}
+.title>p{
+    font-family:PingFangSC-Regular, "Microsoft YaHei";
+    font-size:36px;
+    color:#ffffff;
+    letter-spacing:3.75px;
+    text-align:center;
+}
+.title>span{
+    height: 39px;
+    width: 1px;
+    margin: 0 8px;
+    margin-top: 6px;
+    background-color: #ffffff;
+}
+.code{
+    margin-top: 32px;
+}
+.code>img{
+    margin-bottom: 8px;
+}
+.code>p{
+    font-family:PingFangSC-Regular, "Microsoft YaHei";;
+    font-size:12px;
+    color:#ffffff;
+    text-align: center;
+}
+.detail{
+    background-image: url("../imgs/contact bg.png");
+    width: 442px;
+    min-height: 273px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+}
+.detail_top, .detail_bottom{
+    margin-top: 60px;
+    margin-left: 50px;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+}
+.detail_bottom{
+    margin-top: 25px;
+}
+.detail_top>div,.detail_bottom>div{
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-display: flex;
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+}
+.detail_top>div>img, .detail_bottom>div>img{
+    width: 33px;
+    height: 33px;
+}
+.detail_top>div>p, .detail_bottom>div>p{
+    margin-left: 7px;
+    font-family:PingFangSC-Regular, "Microsoft YaHei";;
+    font-size:18px;
+    color:#ffffff;
+}
+.detail_top>p:nth-child(2), .detail_top>p:nth-child(3), .detail_top>p:nth-child(4), .detail_bottom>p:nth-child(2){
+    margin-top: 8px;
+    font-family:PingFangSC-Regular, "Microsoft YaHei";;
+    font-size:14px;
+    color:#BEC0C2;
+}
+@media all and (-ms-high-contrast:none) {
+    html{
+        font-family: "Microsoft YaHei" !important;
+    }
+    html, body{
+    }
+    body{
+        width: 100%;
+        margin: 0 0;
+        padding: 0 0;
+        overflow: hidden;
+        background-image: url("../imgs/section1_bg.png");
+    }
+    .active{
+        color:#7b7f84 !important;
+    }
+    p{
+        margin: 0 0;
+        padding: 0 0;
+    }
+    .section{
+        display: block;
+        position: absolute;
+        background-image: none;
+        width: 700px;
+        top:100px;
+        left: 50%;
+        margin-left: -350px;
+        text-align: center;
+    }
+    .section>p{
+        margin-top: 24px;
+        width: 480px;
+        margin-left: 110px;
+        font-family:PingFangSC-Regular, "Microsoft YaHei";
+        font-size:14px;
+        color:#7b7f84;
+        letter-spacing:2px;
+        text-align:center;
+    }
+    .section>img{
+        width: 120px;
+        height: 120px;
+        margin-top: 5%;
+    }
+    .title{
+        margin-top: 40px;
+    }
+    .title>p{
+        font-family:PingFangSC-Regular, "Microsoft YaHei";
+        font-size:36px;
+        color:#ffffff;
+        letter-spacing:3.75px;
+        text-align:center;
+    }
+    .title>span{
+        height: 39px;
+        width: 2px;
+        margin: 0 6px;
+        margin-top: 6px;
+        background-color: #ffffff;
+    }
+    .code{
+        margin-top: 32px;
+    }
+    .code>img{
+        margin-bottom: 8px;
+    }
+    .code>p{
+        font-family:PingFangSC-Regular, "Microsoft YaHei";
+        font-size:12px;
+        color:#ffffff;
+        text-align: center;
+    }
+    .detail{
+        background-image: url("../imgs/contact bg.png");
+        width: 442px;
+        height: 273px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    .detail_top, .detail_bottom{
+        margin-top: 60px;
+        margin-left: 50px;
+    }
+    .detail_bottom{
+        margin-top: 25px;
+    }
+    .detail_top>div,.detail_bottom>div{
+
+    }
+    .detail_top>div>img, .detail_bottom>div>img{
+        width: 33px;
+        height: 33px;
+        float: left;
+    }
+    .detail_top>div>p, .detail_bottom>div>p{
+        padding-top: 6px;
+        font-family:PingFangSC-Regular, "Microsoft YaHei";
+        font-size:18px;
+        color:#ffffff;
+    }
+    .detail_top>p, .detail_bottom>p{
+        margin-top: 8px;
+        font-family:PingFangSC-Regular, "Microsoft YaHei";
+        font-size:14px;
+        color:#BEC0C2 !important;
+        text-align: left;
+    }
+}

@@ -1,0 +1,203 @@
+.container{
+    margin: 0 0;
+    padding: 0 0;
+    display: flex;
+    -weblit-display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    background-color: #EEEEEE;
+
+}
+.logo{
+    margin-top: 96px;
+    display: flex;
+    -weblit-display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+.log>img{
+
+    widtH: 85px;
+    height:85px;
+}
+.inputs{
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 32px;
+    flex: 1;
+    -webkit-flex: 1;
+    display: flex;
+    -weblit-display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+.phone,.code{
+    flex: 1;
+    -webkit-flex: 1;
+    display: flex;
+    -weblit-display: flex;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+
+}
+.phone{
+    display: flex;
+    -weblit-display: flex;
+}
+.phone>input,.code>input{
+    flex: 1;
+    -webkit-flex: 1;
+}
+.phone>a{
+    margin-left: 16px;
+    display: flex;
+    -weblit-display: flex;
+    padding-right: 10px;
+    align-items: center;
+    -webkit-align-items: center;
+    font-size: 16px;
+    font-family: "PingFang SC";
+    color: #FF7700;
+}
+.phone>input,.code>input{
+    height:44px;
+}
+.code{
+    margin-top: 1px;
+}
+input{
+    outline: none;
+    shadow: none;
+    border-style: none;
+    text-shadow: none;
+    box-shadow: none;
+    padding-left: 12px;
+    font-size: 16px;
+    font-family: "PingFang SC";
+    color: #666666;
+    font-weight: 400;
+
+}
+input:disabled{
+    border-style: none;
+    text-shadow: none;
+    box-shadow: none;
+    background-color: #FFFFFF;
+    color: #666666;
+}
+.bindBtn,.footer,.errorMessage{
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 20px;
+    flex: 1;
+    -webkit-flex: 1;
+    display: flex;
+    -weblit-display: flex;
+}
+button{
+    padding: 0 0;
+}
+button:hover {
+    border-style: none;
+}
+button:focus {
+    border-style: none;
+}
+button:active {
+    border-style: none;
+}
+.errorMessage{
+    margin-top: 12px;
+    display: none;
+    -webkit-display: none;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -mon-transition: all 1s;
+}
+.errorMessage>p{
+    font-size: 14px;
+    font-family: "PingFang SC";
+    color: #F10000;
+
+}
+.bindBtn>button{
+    width: 100%;
+    height: 49px;
+    background-color: #FF7700;
+    border-style: none;
+    outline: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-family: "PingFang SC";
+    color: #FFFFFF;
+}
+.footer{
+    margin-top: 10px;
+}
+p{
+    padding: 0 0;
+    margin: 0 0;
+    font-size: 12px;
+    font-family: "PingFang SC";
+    color: #999999;
+}
+p>span{
+    color: #FF7700;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #CCCCCC;
+    font-weight: 300;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    font-weight: 300;
+    color: #CCCCCC;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #CCCCCC;
+    font-weight: 300;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    font-weight: 300;
+    color: #CCCCCC;
+}
+.messageTip{
+    position: absolute;
+    opacity: 0;
+    -moz-opacity:0.5; /* 老版Mozilla */
+    -khtml-opacity:0.5; /* 老版Safari */
+    z-index:-1;
+    height: 50px;
+    width: 193px;
+    top:50%;
+    left:50%;
+    margin-top: -25px;
+    margin-left: -96.5px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0px 1px 4px 0px #000000;
+    -webkit-box-shadow: 0px 1px 4px 0px #000000;
+    -moz-box-shadow: 0px 1px 4px 0px #000000;
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+}
+.messageTip>p{
+    height:100%;
+    font-size: 13px;
+    font-family: "PingFang SC";
+    color: #666666;
+    display: flex;
+    -weblit-display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+@media only screen
+and (min-device-width: 320px){
+    .phone>a{
+        margin-left: 10px;
+        padding-right: 8px;
+    }
+}

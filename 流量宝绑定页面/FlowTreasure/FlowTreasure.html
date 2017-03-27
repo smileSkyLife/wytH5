@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="./css/FlowTreasure.css" />
+    <script type="text/javascript" src="./js/fastclick.js"></script>
+</head>
+<body class="container">
+  <div class="logo">
+    <img src="./imgs/logo.png"/>
+  </div>
+  <div class="inputs">
+    <div class="phone"><input type="text" placeholder='' id="phone" disabled="disabled"/><a onclick="codeEvent(this)" id="getCode">获取验证码</a></div>
+    <div class="code"><input type="number" placeholder="请输入短信验证码" value="" id="code"/></div>
+  </div>
+  <div class="errorMessage">
+      <p id="error"></p>
+  </div>
+  <div class="bindBtn">
+    <button onclick="bind()">授权并绑定</button>
+  </div>
+  <div class="footer">
+    <p>首次登录将自动注册天翼账号，且代表您已同意<span>《流量宝用户协议》</span>和<span>《天翼账号用户协议》.</span></p>
+  </div>
+  <div class="messageTip" id="messageTip">
+    <p id="message"></p>
+  </div>
+</body>
+<script type="text/javascript" src="./js/fetch.js"></script>
+<script type="text/javascript" src="./js/FlowTreasure.js"></script>
+<script>
+    FastClick.attach(document.body);
+</script>
+
+</html>
